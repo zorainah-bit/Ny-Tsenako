@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NY-TSENAKO — Logiciel de Gestion Commerciale pour PME</title>
+  <meta name="description" content="NY-TSENAKO est le logiciel de gestion commerciale incontournable pour PC et Windows, conçu pour les PME et points de vente.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #14b8a6;
+      --text-muted: #5eead4;
+      --dark: #0f172a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(160deg, #0f172a 0%, #134e4a 40%, #0f766e 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      padding: 28px 0 20px;
+      text-align: center;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 20px rgba(13, 148, 136, 0.4);
+    }
+
+    .logo h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #5eead4, #99f6e4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    .download-section {
+      text-align: center;
+      padding: 32px 0 40px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 16px 36px;
+      border-radius: 14px;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(13, 148, 136, 0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(13, 148, 136, 0.55);
+    }
+
+    .download-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .version-badge {
+      display: inline-block;
+      margin-top: 14px;
+      background: rgba(255,255,255,0.08);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .gallery-section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #5eead4;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .mosaic-item {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.25s;
+      background: #0f172a;
+    }
+
+    .mosaic-item:hover {
+      transform: scale(1.02);
+    }
+
+    .mosaic-item.full {
+      grid-column: 1 / -1;
+    }
+
+    .mosaic-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .mosaic-caption {
+      padding: 12px 16px;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-align: center;
+    }
+
+    .content-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 36px 40px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(10px);
+    }
+
+    .content-card h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #5eead4;
+      margin-bottom: 16px;
+    }
+
+    .content-card p {
+      color: #cbd5e1;
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+    }
+
+    .sectors {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 20px 0 28px;
+    }
+
+    .sector-item {
+      background: rgba(20, 184, 166, 0.12);
+      border: 1px solid rgba(20, 184, 166, 0.25);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      color: #99f6e4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sector-item::before {
+      content: "✓";
+      color: #14b8a6;
+      font-weight: 700;
+    }
+
+    .features {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: rgba(15, 23, 42, 0.5);
+      padding: 14px 18px;
+      border-radius: 12px;
+      border-left: 4px solid #14b8a6;
+    }
+
+    .feature-item strong {
+      color: #5eead4;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .feature-item span {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .why-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .cta-bottom {
+      text-align: center;
+      padding: 20px 0 50px;
+    }
+
+    .cta-bottom .download-btn {
+      font-size: 1.05rem;
+      padding: 14px 30px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 0 40px;
+      color: #64748b;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer a {
+      color: #5eead4;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 0 14px;
+      }
+
+      header {
+        padding: 20px 0 12px;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+
+      .logo h1 {
+        font-size: 1.45rem;
+      }
+
+      .tagline {
+        font-size: 0.85rem;
+        padding: 0 8px;
+      }
+
+      .download-section {
+        padding: 24px 0 28px;
+      }
+
+      .download-btn {
+        font-size: 1rem;
+        padding: 14px 22px;
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+      }
+
+      .version-badge {
+        font-size: 0.78rem;
+        padding: 5px 12px;
+        line-height: 1.4;
+      }
+
+      .section-title {
+        font-size: 1.15rem;
+      }
+
+      .mosaic {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .mosaic-item.full {
+        grid-column: 1;
+      }
+
+      .mosaic-caption {
+        font-size: 0.8rem;
+        padding: 10px 12px;
+      }
+
+      .content-card {
+        padding: 22px 16px;
+        border-radius: 14px;
+      }
+
+      .content-card h2 {
+        font-size: 1.2rem;
+      }
+
+      .content-card p {
+        font-size: 0.95rem;
+      }
+
+      .sectors {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .sector-item {
+        font-size: 0.9rem;
+        padding: 9px 14px;
+      }
+
+      .feature-item {
+        padding: 12px 14px;
+      }
+
+      .feature-item span {
+        font-size: 0.9rem;
+      }
+
+      .cta-bottom {
+        padding: 16px 0 36px;
+      }
+
+      .cta-bottom .download-btn {
+        font-size: 0.95rem;
+        padding: 13px 20px;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      footer {
+        font-size: 0.8rem;
+        padding: 20px 0 32px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .download-btn {
+        font-size: 0.92rem;
+        padding: 13px 16px;
+      }
+
+      .logo h1 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">🛒</div>
+        <h1>Ny Tsenako</h1>
+      </div>
+      <p class="tagline">Système Caisse &amp; Gestion Vente — Pour PME &amp; Points de Vente</p>
+    </header>
+
+    <section class="download-section">
+      <a href="https://github.com/zorainah-bit/Ny-Tsenako/releases/download/v1.0/NY.TSENAKO.zip" class="download-btn" download>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Télécharger NY-TSENAKO v1.0
+      </a>
+      <div class="version-badge">Windows • 136 Mo • Essai gratuit 7 jours • Version 1.0</div>
+    </section>
+
+    <section class="gallery-section">
+      <h2 class="section-title">Aperçu de l'interface</h2>
+      <div class="mosaic">
+        <div class="mosaic-item full">
+          <img src="capture2.png" alt="Caisse POS - Point de vente Ny Tsenako" loading="lazy">
+          <div class="mosaic-caption">Caisse POS — Enregistrement rapide des ventes</div>
+        </div>
+        <div class="mosaic-item">
+          <img src="capture3.png" alt="Gestion des stocks - Inventaire produits" loading="lazy">
+          <div class="mosaic-caption">Inventaire des Produits — Gestion des stocks</div>
+        </div>
+        <div class="mosaic-item">
+          <img src="capture4.png" alt="Statistiques et analyse des bénéfices" loading="lazy">
+          <div class="mosaic-caption">Statistiques — Évolution du chiffre d'affaires</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-card">
+      <h2>À propos de NY-TSENAKO</h2>
+      <p>
+        <strong>NY-TSENAKO</strong> est le logiciel de gestion commerciale incontournable pour PC et Windows, 
+        spécialement conçu pour piloter, simplifier et optimiser l'activité des PME et des points de vente. 
+        Grâce à une interface intuitive et adaptée sur ordinateur, il offre aux professionnels une solution 
+        complète pour maximiser leur efficacité au quotidien.
+      </p>
+      <p>
+        Ce logiciel polyvalent est idéal pour une large variété de secteurs d'activité :
+      </p>
+
+      <div class="sectors">
+        <div class="sector-item">Épiceries et supérettes</div>
+        <div class="sector-item">Grossistes et demi-grossistes</div>
+        <div class="sector-item">Quincailleries</div>
+        <div class="sector-item">Boutiques de pièces auto et moto</div>
+        <div class="sector-item">Commerces de fruits et légumes</div>
+        <div class="sector-item">Boutiques de prêt-à-porter</div>
+        <div class="sector-item">Commerces de détail</div>
+        <div class="sector-item">Tout autre point de vente</div>
+      </div>
+
+      <h2>Fonctionnalités principales</h2>
+      <div class="features">
+        <div class="feature-item">
+          <div>
+            <strong>Gestion des stocks</strong>
+            <span>Pilotez et suivez votre inventaire en temps réel pour éviter les ruptures.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div>
+            <strong>Suivi des ventes</strong>
+            <span>Enregistrez vos transactions rapidement et suivez l'évolution de votre activité.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div>
+            <strong>Contrôle des prix</strong>
+            <span>Ajustez et gérez vos tarifs en toute simplicité.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div>
+            <strong>Analyse des bénéfices</strong>
+            <span>Gardez un œil précis sur vos marges et vos gains.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div>
+            <strong>Facturation</strong>
+            <span>Éditez des factures et des documents professionnels en quelques clics.</span>
+          </div>
+        </div>
+      </div>
+
+      <h2>Pourquoi choisir NY-TSENAKO ?</h2>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-icon">⏱</div>
+          <div>
+            <strong style="color:#5eead4">Gain de temps et d'efficacité</strong><br>
+            <span style="color:#94a3b8">Automatisez vos tâches répétitives pour vous concentrer sur l'essentiel.</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📈</div>
+          <div>
+            <strong style="color:#5eead4">Rentabilité sécurisée</strong><br>
+            <span style="color:#94a3b8">Prenez les meilleures décisions grâce à des indicateurs financiers clairs et précis pour votre PME.</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">💻</div>
+          <div>
+            <strong style="color:#5eead4">100% Windows</strong><br>
+            <span style="color:#94a3b8">Une compatibilité totale et optimisée pour votre environnement PC.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-bottom">
+      <p style="color:#94a3b8; margin-bottom:16px; font-size:1.05rem;">
+        <strong style="color:#5eead4">NY-TSENAKO</strong> — Le logiciel pour PME performant.<br>
+        Votre gestion. Votre réussite sur PC.
+      </p>
+      <a href="https://github.com/zorainah-bit/Ny-Tsenako/releases/download/v1.0/NY.TSENAKO.zip" class="download-btn" download>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Télécharger maintenant (136 Mo)
+      </a>
+    </section>
+
+    <footer>
+      <p>
+        <a href="https://github.com/zorainah-bit/Ny-Tsenako" target="_blank" rel="noopener">GitHub — Ny-Tsenako</a>
+        &nbsp;·&nbsp; Release <a href="https://github.com/zorainah-bit/Ny-Tsenako/releases/tag/v1.0" target="_blank" rel="noopener">v1.0</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
